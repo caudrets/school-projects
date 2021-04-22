@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package kvstore;
+
+message Message {
+
+  string ip = 1;
+
+  enum ConType {
+    NO_TYPE = 0;
+    LINEARIZED = 1;
+    SEQUENTIAL = 2;
+    CAUSAL = 3;
+    EVENTUAL = 4;
+  }
+  ConType consis = 2;
+
+  enum ReqType {
+    NULL = 0;
+    SET = 1;
+    GET = 2;
+  }
+  ReqType request = 3;
+
+  enum AckType {
+    FAIL = 0;
+    OK = 1;
+  }
+  AckType ack = 4;
+
+  string data = 5;
+
+  double l_Clock = 7;
+
+  int32 rID = 8;
+  
+  int32 ma_Timestamp = 9;
+}
